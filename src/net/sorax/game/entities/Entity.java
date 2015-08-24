@@ -1,16 +1,28 @@
 package net.sorax.game.entities;
 
-import net.sorax.engine.maths.Vector2f;
+import java.util.Random;
 
-public class Entity {
+import net.sorax.engine.maths.Vector2f;
+import net.sorax.game.world.Level;
+
+public abstract class Entity {
 	
 	protected Vector2f pos;
 	protected Vector2f size;
+	protected Level level;
 	
-	public Entity() {
+	protected Random rand;
+	
+	public Entity(Level level) {
 		this.pos = new Vector2f(0, 0);
 		this.size = new Vector2f(0, 0);
+		this.level = level;
+		this.rand = new Random();
 	}
+	
+	public abstract void update();
+	
+	public abstract void render();
 	
 	public void setPosition(Vector2f newPos) {
 		this.setPosition(newPos.x, newPos.y);
@@ -34,5 +46,9 @@ public class Entity {
 	
 	public Vector2f getSize() {
 		return this.size;
+	}
+	
+	public Level getLevel() {
+		return this.level;
 	}
 }
